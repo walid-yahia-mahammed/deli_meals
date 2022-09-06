@@ -1,9 +1,11 @@
+import 'package:deli_meals/models/meal.dart';
+import 'package:deli_meals/widgets/meal_item.dart';
 import 'package:flutter/material.dart';
 
 import '../dummies/dummy-data.dart';
 
 class CategoryMealsScreen extends StatelessWidget {
-  static String routeName = '/category_meals';
+  static const routeName = '/category_meals';
   @override
   Widget build(BuildContext context) {
     final Map<String, String> routeArgs =
@@ -21,7 +23,13 @@ class CategoryMealsScreen extends StatelessWidget {
       ),
       body: ListView.builder(
         itemBuilder: (ctx, index) {
-          return Text(categoryMeald[index].title);
+          return MealItem(
+              id: categoryMeald[index].id,
+              title: categoryMeald[index].title,
+              imageUrl: categoryMeald[index].imageUrl,
+              duration: categoryMeald[index].duration,
+              complexity: categoryMeald[index].complexity,
+              affordability: categoryMeald[index].affordability);
         },
         itemCount: categoryMeald.length,
       ),
