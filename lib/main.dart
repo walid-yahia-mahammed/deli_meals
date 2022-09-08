@@ -1,3 +1,5 @@
+import 'package:deli_meals/screens/favorites_screen.dart';
+import 'package:deli_meals/screens/tabs_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'screens/category_meals_screen.dart';
@@ -34,9 +36,10 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (ctx) => CategoriesScreen(),
+        '/': (ctx) => TabsScreen(),
         CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
         MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
+        FavoritesScreen.routeName: (ctx) => FavoritesScreen(),
       },
       onUnknownRoute: (settings) {
         return MaterialPageRoute(builder: (ctx) => CategoriesScreen());
