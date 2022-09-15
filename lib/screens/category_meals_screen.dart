@@ -14,18 +14,22 @@ class CategoryMealsScreen extends StatefulWidget {
 class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
   String categoryTitle = '';
   List<Meal> displayedMeals = [];
+  var _loadedInitiated = false;
 
   @override
   void didChangeDependencies() {
-    final Map<String, String> routeArgs =
-        ModalRoute.of(context)!.settings.arguments as Map<String, String>;
-    categoryTitle = routeArgs['title'] as String;
-    final categoryId = routeArgs['id'] as String;
-    displayedMeals = DUMMY_MEALS.where(
-      (meal) {
-        return meal.categories.contains(categoryId);
-      },
-    ).toList();
+    if (!_loadedInitiated) {
+      final Map<String, String> routeArgs =
+          ModalRoute.of(context)!.settings.arguments as Map<String, String>;
+      categoryTitle = routeArgs['title'] as String;
+      final categoryId = routeArgs['id'] as String;
+      displayedMeals = DUMMY_MEALS.where(
+        (meal) {
+          return meal.categories.contains(categoryId);
+        },
+      ).toList();
+      _loadedInitiated = true;
+    }
     super.didChangeDependencies();
   }
 
